@@ -32,7 +32,7 @@ public class PropertyServlet extends BaseBackServlet {
 		propertyDAO.delete(id);
 		return "@admin_property_list?cid=" + p.getCategory().getId();
 	}
-
+//
 	@Override
 	public String edit(HttpServletRequest request, HttpServletResponse response, Page page) {
 		int id = Integer.parseInt(request.getParameter("id"));
