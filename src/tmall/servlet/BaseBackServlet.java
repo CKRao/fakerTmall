@@ -107,8 +107,7 @@ public abstract class BaseBackServlet extends HttpServlet {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	    
+		}	    
 		return is;
 	}
 	

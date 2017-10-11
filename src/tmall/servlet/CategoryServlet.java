@@ -19,6 +19,7 @@ import tmall.util.ImageUtil;
 import tmall.util.Page;
 
 public class CategoryServlet extends BaseBackServlet {
+	@Override
 	public String add(HttpServletRequest request,HttpServletResponse response,Page page){
 		Map<String, String> params = new HashMap<>();
 		InputStream is = super.parseUpload(request, params);
@@ -52,17 +53,20 @@ public class CategoryServlet extends BaseBackServlet {
 		}
 		return "@admin_category_list";
 	}
+	@Override
     public String delete(HttpServletRequest request,HttpServletResponse response,Page page){
     	int id = Integer.parseInt(request.getParameter("id"));
         categoryDAO.delete(id);
 		return "@admin_category_list";
 	}
+	@Override
     public String edit(HttpServletRequest request,HttpServletResponse response,Page page){
     	int id = Integer.parseInt(request.getParameter("id"));
         Category c = categoryDAO.get(id);
         request.setAttribute("c", c);
 		return "admin/editCategory.jsp";
 	}
+	@Override
     public String update(HttpServletRequest request,HttpServletResponse response,Page page){
     	Map<String,String> params = new HashMap<>();
         InputStream is = super.parseUpload(request, params);
@@ -103,6 +107,7 @@ public class CategoryServlet extends BaseBackServlet {
         }
     	return "@admin_category_list";
 	}
+	@Override
     public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
     	List<Category> cs = categoryDAO.list(page.getStart(),page.getCount());
     	int total = categoryDAO.getTotal();

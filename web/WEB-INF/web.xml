@@ -11,6 +11,15 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>tmall.servlet.ProductServlet</servlet-class>
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/productServlet</url-pattern>
+    </servlet-mapping>
+      <servlet>
         <servlet-name>PropertyServlet</servlet-name>
         <servlet-class>tmall.servlet.PropertyServlet</servlet-class>
     </servlet>

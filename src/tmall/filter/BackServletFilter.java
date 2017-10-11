@@ -17,8 +17,7 @@ public class BackServletFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		
-		
+
 	}
 
 	@Override
@@ -26,16 +25,16 @@ public class BackServletFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-		
+
 		String contextPath = httpServletRequest.getServletContext().getContextPath();
 		String uri = httpServletRequest.getRequestURI();
-		uri = StringUtils.remove(uri,contextPath);
-		
+		uri = StringUtils.remove(uri, contextPath);
+
 		if (uri.startsWith("/admin_")) {
-			String servletPath = StringUtils.substringBetween(uri,"_", "_")+"Servlet";
+			String servletPath = StringUtils.substringBetween(uri, "_", "_") + "Servlet";
 			String method = StringUtils.substringAfterLast(uri, "_");
 			httpServletRequest.setAttribute("method", method);
-			request.getRequestDispatcher("/"+servletPath).forward(httpServletRequest, httpServletResponse);
+			request.getRequestDispatcher("/" + servletPath).forward(httpServletRequest, httpServletResponse);
 			return;
 		}
 		chain.doFilter(httpServletRequest, httpServletResponse);
@@ -43,10 +42,7 @@ public class BackServletFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		
-		
-	}
 
-	
+	}
 
 }
