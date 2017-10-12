@@ -12,11 +12,16 @@ import tmall.util.Page;
 
 public class OrderServlet extends BaseBackServlet {
 
-	@Override
-	public String add(HttpServletRequest request, HttpServletResponse response, Page page) {
-
-		return null;
+	public String delivery(HttpServletRequest request, HttpServletResponse response, Page page) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		Order o = orderDAO.get(id);
+		o.setDeliveryDate(new Date());
+		o.setStatus(OrderDAO.waitConfirm);
+		orderDAO.update(o);
+		return "@admin_order_list";
 	}
+
+
 
 	@Override
 	public String delete(HttpServletRequest request, HttpServletResponse response, Page page) {
@@ -46,14 +51,12 @@ public class OrderServlet extends BaseBackServlet {
 		return "admin/listOrder.jsp";
 	}
 
-	public String delivery(HttpServletRequest request, HttpServletResponse response, Page page) {
-		int id = Integer.parseInt(request.getParameter("id"));
-		Order o = orderDAO.get(id);
-		o.setDeliveryDate(new Date());
-		o.setStatus(OrderDAO.waitConfirm);
-		orderDAO.update(o);
-		
-		return "@admin_order_list";
+
+
+	@Override
+	public String add(HttpServletRequest request, HttpServletResponse response, Page page) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
