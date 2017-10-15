@@ -70,7 +70,7 @@ $(function(){
                  
         <tr>
             <td colspan="2" class="registerButtonTD">
-                <a href="registerSuccess.jsp"><button>提   交</button></a>
+                <a href="/foreregister"><button>提   交</button></a>
             </td>
         </tr>             
     </table>
