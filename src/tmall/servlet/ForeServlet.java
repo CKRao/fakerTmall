@@ -2,6 +2,7 @@ package tmall.servlet;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -369,4 +370,20 @@ public class ForeServlet extends BaseForeServlet {
 	     
 	    return "@forereview?oid="+oid+"&showonly=true";     
 	}
+	public String buy(HttpServletRequest request, HttpServletResponse response, Page page){
+	    String[] oiids=request.getParameterValues("oiid");
+	    List<OrderItem> ois = new ArrayList<>();
+	    float total = 0;
+	 
+	    for (String strid : oiids) {
+	        int oiid = Integer.parseInt(strid);
+	        OrderItem oi= orderItemDAO.get(oiid);
+	        total +=oi.getProduct().getPromotePrice()*oi.getNumber();
+	        ois.add(oi);
+	    }
+	     
+	    request.getSession().setAttribute("ois", ois);
+	    request.setAttribute("total", total);
+	    return "buy.jsp";
+	}   
 }
